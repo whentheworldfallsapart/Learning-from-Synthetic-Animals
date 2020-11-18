@@ -1,4 +1,4 @@
-Root=http://www.cs.jhu.edu/~qiuwch/animal/
+lsRoot=http://www.cs.jhu.edu/~qiuwch/animal/
 mkdir -p animal_data/synthetic_animal
 wget -c $Root/synthetic_animal/horse_combineds5r5_texture.zip -O animal_data/synthetic_animal/horse_combineds5r5_texture.zip
 wget -c $Root/synthetic_animal/tiger_combineds5r5_texture.zip -O animal_data/synthetic_animal/tiger_combineds5r5_texture.zip

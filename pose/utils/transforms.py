@@ -9,6 +9,8 @@ import torch
 from .misc import *
 from .imutils import *
 
+import cv2
+
 
 def color_normalize(x, mean, std):
     if x.size(0) == 1:
@@ -169,7 +171,7 @@ def crop(img, center, scale, res, rot=0):
             return torch.zeros(res[0], res[1], img.shape[2]) \
                         if len(img.shape) > 2 else torch.zeros(res[0], res[1])
         else:
-            img = scipy.misc.imresize(img, [new_ht, new_wd])
+            img = cv2.resize(img, (new_ht, new_wd))
             center = center * 1.0 / sf
             scale = scale / sf
 
@@ -202,5 +204,6 @@ def crop(img, center, scale, res, rot=0):
         new_img = scipy.misc.imrotate(new_img, rot)
         new_img = new_img[pad:-pad, pad:-pad]
 
-    new_img = im_to_torch(scipy.misc.imresize(new_img, res))
+    #new_img = im_to_torch(scipy.misc.imresize(new_img, res))
+    new_img = im_to_torch(cv2.resize(new_img, tuple(res)))
     return new_img

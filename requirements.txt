@@ -5,3 +5,5 @@ imgaug
 scipy
 progress
 numpy
+easydict
+tqdm

@@ -2,28 +2,16 @@ from __future__ import print_function, absolute_import
 
 import os
 import numpy as np
-import json
 import random
-import math
-
 import torch
 import torch.utils.data as data
 
 from pose.utils.osutils import *
 from pose.utils.imutils import *
 from pose.utils.transforms import *
-from pose.utils.evaluation  import final_preds
-import pose.models as models
-
-from scipy.io import loadmat
 import glob
-
-import scipy.misc
 import imageio
-import imgaug as ia
 import imgaug.augmenters as iaa
-from imgaug.augmentables.segmaps import SegmentationMapsOnImage
-
 import cv2
 
 def crop_seg(img, center, scale, res, rot=0):
@@ -42,7 +30,6 @@ def crop_seg(img, center, scale, res, rot=0):
             return torch.zeros(res[0], res[1], img.shape[2]) \
                         if len(img.shape) > 2 else torch.zeros(res[0], res[1])
         else:
-#             img = scipy.misc.imresize(img, [new_ht, new_wd])
             img = cv2.resize(img,(int(res[0]),int(res[1])))
             center = center * 1.0 / sf
             scale = scale / sf
@@ -73,13 +60,11 @@ def crop_seg(img, center, scale, res, rot=0):
 
     if not rot == 0:
         # Remove padding
-#         new_img = scipy.misc.imrotate(new_img, rot)
         rows,cols = img.shape
         M = cv2.getRotationMatrix2D((cols/2,rows/2),rot,1)
         dst = cv2.warpAffine(img,M,(cols,rows))
         new_img = new_img[pad:-pad, pad:-pad]
 
-#     new_img = scipy.misc.imresize(new_img, res)
     new_img = cv2.resize(new_img,(int(res[0]),int(res[1])))
 
     return new_img

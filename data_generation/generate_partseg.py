@@ -2,35 +2,16 @@ from __future__ import print_function, absolute_import
 
 import os
 import numpy as np
-import json
-import random
-import math
-
-import torch
-import torch.utils.data as data
-
-import _init_paths
 from pose.utils.osutils import *
 from pose.utils.imutils import *
 from pose.utils.transforms import *
-from pose.utils.evaluation  import final_preds
-import pose.models as models
 
-from scipy.io import loadmat
 import glob
-
-import scipy.misc
 import imageio
-
-import json
 import os
-import scipy.misc
-import scipy.ndimage
 import glob
 import numpy as np
-import cv2
-
-from sklearn import neighbors, datasets
+from sklearn import neighbors
 from tqdm import tqdm
 import argparse
 

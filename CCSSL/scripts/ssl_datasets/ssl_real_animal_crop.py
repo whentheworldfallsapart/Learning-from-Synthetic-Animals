@@ -2,9 +2,7 @@ from __future__ import print_function, absolute_import
 
 import os
 import numpy as np
-import json
 import random
-import math
 
 import torch
 import torch.utils.data as data
@@ -13,16 +11,10 @@ from pose.utils.osutils import *
 from pose.utils.imutils import *
 from pose.utils.transforms import *
 from pose.utils.evaluation  import final_preds
-import pose.models as models
 
-from scipy.io import loadmat
 import glob
 
-import scipy.misc
 import imageio
-import imgaug as ia
-import imgaug.augmenters as iaa
-from imgaug.augmentables.kps import KeypointsOnImage
 
 # bbox using keypoints
 def cal_bbox(kpts_list):

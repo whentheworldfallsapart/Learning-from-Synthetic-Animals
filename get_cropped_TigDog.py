@@ -3,24 +3,15 @@ from __future__ import print_function, absolute_import
 
 import os
 import numpy as np
-import json
-import random
-import math
 
 import torch
-import torch.utils.data as data
 
 from pose.utils.osutils import *
 from pose.utils.imutils import *
 from pose.utils.transforms import *
-from pose.utils.evaluation  import final_preds
-import pose.models as models
 
-import glob
 import cv2
 from tqdm import tqdm
-import scipy.misc
-import scipy.ndimage
 from scipy.io import loadmat
 import imageio
 
@@ -84,8 +75,8 @@ def im_to_torch(img):
 def get_cropped_dataset(img_folder, img_list, anno_list, img_idxs, animal):
     count = 0
     for i in tqdm(range(len(img_list))):
-    
-        img = scipy.misc.imread(os.path.join(img_folder, 'behaviorDiscovery2.0/', animal, img_list[i][0]), mode='RGB')
+        #img = scipy.misc.imread(os.path.join(img_folder, 'behaviorDiscovery2.0/', animal, img_list[i][0]), mode='RGB')
+        img = np.array(imageio.imread(os.path.join(img_folder, 'behaviorDiscovery2.0/', animal, img_list[i][0])))
         img_new_path = 'crop_'+img_list[i][0]
         frame = img.copy()
         img = im_to_torch(img)

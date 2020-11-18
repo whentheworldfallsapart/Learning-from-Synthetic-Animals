@@ -2,9 +2,7 @@ from __future__ import print_function, absolute_import
 
 import os
 import numpy as np
-import json
 import random
-import math
 
 import torch
 import torch.utils.data as data
@@ -14,13 +12,9 @@ from pose.utils.imutils import *
 from pose.utils.transforms import *
 
 from scipy.io import loadmat
-import glob
 
-import scipy.misc
 import imageio
-import imgaug as ia
 import imgaug.augmenters as iaa
-from imgaug.augmentables.kps import KeypointsOnImage
 
 def load_animal(data_dir='./', animal='horse'):
     """
