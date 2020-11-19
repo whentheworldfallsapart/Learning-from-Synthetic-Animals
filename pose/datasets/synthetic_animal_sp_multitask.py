@@ -61,7 +61,7 @@ def crop_seg(img, center, scale, res, rot=0):
     if not rot == 0:
         # Remove padding
         rows,cols = img.shape
-        rot = np.asscalar(to_numpy(rot).astype(np.float))
+        rot = float(rot)
         M = cv2.getRotationMatrix2D((cols/2,rows/2),rot,1)
         dst = cv2.warpAffine(img,M,(cols,rows))
         new_img = new_img[pad:-pad, pad:-pad]
