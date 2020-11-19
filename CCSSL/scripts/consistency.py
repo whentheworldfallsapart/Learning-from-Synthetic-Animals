@@ -50,8 +50,8 @@ def prediction_check(previous_inp, previous_kpts, inp, model, dataset, num_trans
         feat_map = score_map.squeeze(0).detach().cpu().numpy()
         for j in range(feat_map.shape[0]):
             feat_map_j = feat_map[j]
-            print(type(rot),rot)
-            rot = np.asscalar(rot).astype(np.float)
+            rot = float(rot)
+            s = float(s)
             M = cv2.getRotationMatrix2D((32,32),-rot,1)
             feat_map_j = cv2.warpAffine(feat_map_j,M,(64,64))
             feat_map_j = cv2.resize(feat_map_j,None,fx=s*200.0/256.0,fy=s*200.0/256.0, interpolation=cv2.INTER_LINEAR)
