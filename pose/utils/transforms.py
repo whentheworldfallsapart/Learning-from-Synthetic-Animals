@@ -20,6 +20,22 @@ def color_normalize(x, mean, std):
         t.sub_(m)
     return x
 
+def rotate(image, angle, center=None, scale=1.0):
+    # grab the dimensions of the image
+    (h, w) = image.shape[:2]
+
+    # if the center is None, initialize it as the center of
+    # the image
+    if center is None:
+        center = (w // 2, h // 2)
+    angle = np.asscalar(to_numpy(angle).astype(np.float))
+    # perform the rotation
+    M = cv2.getRotationMatrix2D(center, angle, scale)
+    rotated = cv2.warpAffine(image, M, (w, h))
+
+    # return the rotated image
+    return rotated
+
 
 def flip_back(flip_output, dataset):
     """
@@ -201,7 +217,8 @@ def crop(img, center, scale, res, rot=0):
 
     if not rot == 0:
         # Remove padding
-        new_img = scipy.misc.imrotate(new_img, rot)
+        #new_img = scipy.misc.imrotate(new_img, rot)
+        new_img = rotate(new_img, rot)
         new_img = new_img[pad:-pad, pad:-pad]
 
     #new_img = im_to_torch(scipy.misc.imresize(new_img, res))
