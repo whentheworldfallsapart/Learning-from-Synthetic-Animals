@@ -170,7 +170,7 @@ class Synthetic_Animal_SP_Multitask(data.Dataset):
                     )),
                     sometimes(iaa.AdditiveGaussianNoise(scale=0.5*255, per_channel=0.5)),
                     sometimes(iaa.GaussianBlur(sigma=(1.0,5.0))),
-                    sometimes(iaa.ContrastNormalization((0.5, 2.0), per_channel=0.5)), # improve or worsen the contrast
+                    sometimes(iaa.LinearContrast((0.5, 2.0), per_channel=0.5)), # improve or worsen the contrast
                         ],
                 random_order=True
             )

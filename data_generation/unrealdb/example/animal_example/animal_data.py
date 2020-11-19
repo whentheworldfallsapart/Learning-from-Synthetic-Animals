@@ -252,6 +252,7 @@ def main(args):
         kpts, kpts_z = transform_kpts(cam_loc, cam_rot, kp_3d_array, depth)
 
         ## transform images and kpts
+        #TODO get rid of PIL
         img = Image.fromarray(img[:,:,:3])
         seg_mask = np.zeros((mask.shape[0], mask.shape[1]), dtype=np.uint8)
         seg_mask[mask==False] = 0 # tiger/horse
